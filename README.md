@@ -20,7 +20,7 @@ Welcome! This repository is created to build and showcase my professional portfo
 
 ---
 
-## Contact
+## Connect With Me 
 
 Visit my full portfolio here:  
 [thamilezaiananthakumar.github.io/MY__Portfolio](https://thamilezaiananthakumar.github.io/MY__Portfolio/)
