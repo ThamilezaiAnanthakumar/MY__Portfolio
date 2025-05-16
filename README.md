@@ -1,37 +1,30 @@
 # Thamil Ananthakumar — Biomedical Engineering Portfolio
 
-Welcome! This repository showcases my CV, academic projects, and technical blogs focused on biosignal processing, embedded systems, machine learning, and digital health innovation.
+Welcome! This repository is created to build and showcase my professional portfolio, highlighting my CV, academic projects, and technical blogs with a focus on biosignal processing, embedded systems, machine learning, and digital health innovation.
 
 ---
 
-## Portfolio Overview
+<!-- Add your portfolio front page image here -->
+![Portfolio Front Page](path/to/your-image.png)
 
 ---
 
-## Downloadable CV
+## Portfolio Contents
 
----
-
-## Projects
-
----
-
-## Blogs
-
----
-
-## Tools & Technologies
+- **Portfolio Overview**  
+- **Downloadable CV**  
+- **Projects**  
+- **Blogs**  
+- **Tools & Technologies**  
+- **Contact**
 
 ---
 
 ## Contact
 
-- Portfolio: [thamilezaiananthakumar.github.io/MY__Portfolio](https://thamilezaiananthakumar.github.io/MY__Portfolio/)
+Visit my full portfolio here:  
+[thamilezaiananthakumar.github.io/MY__Portfolio](https://thamilezaiananthakumar.github.io/MY__Portfolio/)
 
 ---
 
 Thank you for visiting!
-
-
-
-
