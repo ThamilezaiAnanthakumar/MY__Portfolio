@@ -1,4 +1,4 @@
-# Thamil Ananthakumar — Portfolio
+# Thamilezai Ananthakumar — Portfolio
 
 Welcome! This repository is created to build and showcase my professional portfolio, highlighting my CV, academic projects, and technical blogs with a focus on biosignal processing, embedded systems, machine learning, and digital health innovation.
 
