@@ -837,39 +837,36 @@
     box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
   }
 
+  /* Project image: icon sits behind the photo.
+     If the photo loads it covers the icon; if the file is missing,
+     onerror removes the <img> and only the icon is shown. */
   .project-image {
+    position: relative;
     height: 200px;
     overflow: hidden;
-  }
-
-  .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-  }
-
-  .project-card:hover .project-image img {
-    transform: scale(1.05);
-  }
-
-  /* Projects without a photo show an icon instead */
-  .project-image.placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(45, 212, 191, 0.15));
   }
 
-  .project-image.placeholder i {
+  .project-image i {
     font-size: 4rem;
     color: rgba(255, 255, 255, 0.85);
     transition: var(--transition);
   }
 
-  .project-card:hover .project-image.placeholder i {
-    transform: scale(1.1);
+  .project-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
   }
+
+  .project-card:hover .project-image img { transform: scale(1.05); }
+  .project-card:hover .project-image i { transform: scale(1.1); }
 
   .project-content {
     padding: 1.5rem;
@@ -1715,8 +1712,12 @@
         <p class="scroll-hint"><i class="fas fa-arrows-left-right"></i>Scroll sideways to see all projects</p>
         <div class="projects-grid" id="projects-grid">
 
+          <!-- 1. mmWave Radar -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000">
-            <div class="project-image placeholder"><i class="fas fa-satellite-dish"></i></div>
+            <div class="project-image">
+              <i class="fas fa-satellite-dish" aria-hidden="true"></i>
+              <img src="./assets/img/mmwave.jpg" alt="mmWave radar arterial pulse sensing" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Beyond Optical PPG: mmWave Radar Arterial Pulse Sensing</h4>
               <p class="project-date">Sep 2026 – May 2027 <span class="exp-badge">Final Year Research Project</span></p>
@@ -1734,10 +1735,12 @@
             </div>
           </div>
 
+          <!-- 2. Electronic Stethoscope -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-            <div class="project-image"><img src="./assets/img/heart.jpg" alt="Wearable PPG-based myocardial infarction prediction"  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /></div>
-            <div class="project-image placeholder"><i class="fas fa-stethoscope"></i></div>
             <div class="project-image">
+              <i class="fas fa-stethoscope" aria-hidden="true"></i>
+              <img src="./assets/img/stethoscope.jpg" alt="Analog MEMS portable electronic stethoscope" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Analog MEMS-Based Portable Electronic Stethoscope</h4>
               <p class="project-date">Jul 2026 – Oct 2026</p>
@@ -1755,8 +1758,12 @@
             </div>
           </div>
 
+          <!-- 3. MI Prediction -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <div class="project-image"><img src="./assets/img/heart.jpg" alt="Wearable PPG-based myocardial infarction prediction" /></div>
+            <div class="project-image">
+              <i class="fas fa-heart-pulse" aria-hidden="true"></i>
+              <img src="./assets/img/heart.jpg" alt="Wearable PPG-based myocardial infarction prediction" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Wearable PPG Based Myocardial Infarction Prediction Using HRV Analysis</h4>
               <p class="project-date">Jul 2025</p>
@@ -1774,8 +1781,12 @@
             </div>
           </div>
 
+          <!-- 4. Portable ECG -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-            <div class="project-image"><img src="./assets/img/cardio.jpg" alt="Portable ECG monitoring and cardiac analysis system" /></div>
+            <div class="project-image">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <img src="./assets/img/cardio.jpg" alt="Portable ECG monitoring and cardiac analysis system" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Portable ECG Monitoring and Real Time Cardiac Analysis System for Coronary Care Units</h4>
               <p class="project-date">Mar 2025</p>
@@ -1793,8 +1804,12 @@
             </div>
           </div>
 
+          <!-- 5. Asset Tracker -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-            <div class="project-image placeholder"><i class="fas fa-id-card"></i></div>
+            <div class="project-image">
+              <i class="fas fa-id-card" aria-hidden="true"></i>
+              <img src="./assets/img/tracker.jpg" alt="Ultra-low-power smart student asset tracker" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Ultra-Low-Power Smart Student Asset Tracker</h4>
               <p class="project-date">Jul 2026 – Oct 2026</p>
@@ -1812,8 +1827,12 @@
             </div>
           </div>
 
+          <!-- 6. Stress Monitor -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-            <div class="project-image placeholder"><i class="fas fa-heart-pulse"></i></div>
+            <div class="project-image">
+              <i class="fas fa-heart-pulse" aria-hidden="true"></i>
+              <img src="./assets/img/stress.jpg" alt="Stress monitoring using HRV and neural network" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Monitor Stress Level Using HRV and Neural Network</h4>
               <p class="project-date">May 2025</p>
@@ -1831,8 +1850,12 @@
             </div>
           </div>
 
+          <!-- 7. Eye State EEG -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image placeholder"><i class="fas fa-eye"></i></div>
+            <div class="project-image">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <img src="./assets/img/eye.jpg" alt="Eye state monitoring using EMG artifacts in EEG" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Eye State Monitoring Using EMG Artifacts as Useful Features in EEG</h4>
               <p class="project-date">Aug 2025</p>
@@ -1850,8 +1873,12 @@
             </div>
           </div>
 
+          <!-- 8. Vein Detection -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image"><img src="./assets/img/v.avif" alt="Near-infrared vein detection device" /></div>
+            <div class="project-image">
+              <i class="fas fa-syringe" aria-hidden="true"></i>
+              <img src="./assets/img/v.avif" alt="Near-infrared vein detection device" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Non-Invasive Subcutaneous Vein Detection Using Near-Infrared Imaging</h4>
               <p class="project-date">Aug 2024</p>
@@ -1869,8 +1896,12 @@
             </div>
           </div>
 
+          <!-- 9. EMG Analog Front-End -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image"><img src="./assets/img/emg.jpg" alt="Analog front-end for EMG signal acquisition" /></div>
+            <div class="project-image">
+              <i class="fas fa-bolt" aria-hidden="true"></i>
+              <img src="./assets/img/emg.jpg" alt="Analog front-end for EMG signal acquisition" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Design of an Analog Front-End for EMG Signal Acquisition, Filtering, and Wireless Transmission</h4>
               <p class="project-date">Nov 2024</p>
@@ -1889,8 +1920,12 @@
             </div>
           </div>
 
+          <!-- 10. Physiological Modelling -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image placeholder"><i class="fas fa-wave-square"></i></div>
+            <div class="project-image">
+              <i class="fas fa-wave-square" aria-hidden="true"></i>
+              <img src="./assets/img/physio.jpg" alt="Modeling and analysis of physiological systems" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Modeling and Analysis of Physiological System</h4>
               <p class="project-date">May 2025</p>
@@ -1910,8 +1945,12 @@
             </div>
           </div>
 
+          <!-- 11. Muscle Cramp -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image"><img src="./assets/img/Muscle-Spasm-1200x815.webp" alt="Multimodal wearable muscle cramp detection system" /></div>
+            <div class="project-image">
+              <i class="fas fa-dumbbell" aria-hidden="true"></i>
+              <img src="./assets/img/Muscle-Spasm-1200x815.webp" alt="Multimodal wearable muscle cramp detection system" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Multimodal Wearable System for Real-Time Muscle Cramp Detection</h4>
               <p class="project-date">Nov 2024</p>
@@ -1928,8 +1967,12 @@
             </div>
           </div>
 
+          <!-- 12. Skin Disease TinyML -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image"><img src="./assets/img/skin-diseases-concept-vector-42347361.jpg" alt="TinyML skin disease prediction system" /></div>
+            <div class="project-image">
+              <i class="fas fa-microscope" aria-hidden="true"></i>
+              <img src="./assets/img/skin-diseases-concept-vector-42347361.jpg" alt="TinyML skin disease prediction system" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>TinyML-Based Edge AI System for Skin Disease Prediction</h4>
               <p class="project-date">Jan 2025</p>
@@ -1948,8 +1991,12 @@
             </div>
           </div>
 
+          <!-- 13. MediBox -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image"><img src="./assets/img/medi.png" alt="IoT MediBox embedded system" /></div>
+            <div class="project-image">
+              <i class="fas fa-pills" aria-hidden="true"></i>
+              <img src="./assets/img/medi.png" alt="IoT MediBox embedded system" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Implementing an Embedded System for a MediBox</h4>
               <p class="project-date">May 2025</p>
@@ -1966,8 +2013,12 @@
             </div>
           </div>
 
+          <!-- 14. Capacitive Torque Sensor -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image placeholder"><i class="fas fa-gears"></i></div>
+            <div class="project-image">
+              <i class="fas fa-gears" aria-hidden="true"></i>
+              <img src="./assets/img/torque.jpg" alt="Capacitive torque sensor" onerror="this.remove()" />
+            </div>
             <div class="project-content">
               <h4>Capacitive Torque Sensor</h4>
               <p class="project-date">May 2025</p>
