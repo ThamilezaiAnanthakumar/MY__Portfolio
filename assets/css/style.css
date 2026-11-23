@@ -18,7 +18,7 @@
   --transition: all 0.3s ease;
   --list-heading-color: #2dd4bf; /* Vibrant teal for list headings */
   --list-item-color: #f0abfc; /* Soft magenta for list items */
-  
+
   /* Section background colors */
   --about-bg: linear-gradient(135deg, #1f2937, #111827, #312e81);
   --education-bg: linear-gradient(135deg, #312e81, #111827, #1e3a8a);
@@ -26,7 +26,7 @@
   --projects-bg: linear-gradient(135deg, #4c1d95, #111827, #5b21b6);
   --blog-bg: linear-gradient(135deg, #5b21b6, #111827, #6b21a8);
   --contact-bg: linear-gradient(135deg, #6b21a8, #111827, #1f2937);
-  
+
   /* Title background */
   --title-bg: #e5d8fe;
   --title-text: #4c1d95;
@@ -473,6 +473,11 @@ main {
   color: white;
 }
 
+.google-scholar:hover {
+  background: #4285f4;
+  color: white;
+}
+
 /* Buttons */
 .buttons {
   display: flex;
@@ -631,6 +636,21 @@ main {
 
 .coursework ul li {
   margin-bottom: 0.5rem;
+}
+
+/* Coursework lists in two columns */
+.coursework ul.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1.5rem;
+  row-gap: 0.3rem;
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.coursework ul.two-col li {
+  overflow-wrap: break-word;
+  line-height: 1.4;
 }
 
 .highlight-link {
@@ -1024,16 +1044,16 @@ main {
     width: 220px;
     z-index: 1001;
   }
-  
+
   .sidebar.active {
     transform: translateX(0);
   }
-  
+
   main {
     margin-left: 0;
     padding-top: 70px;
   }
-  
+
   .mobile-nav {
     display: flex;
   }
@@ -1084,7 +1104,7 @@ main {
   .section {
     padding: 50px 0;
   }
-  
+
   .container {
     width: 95%;
   }
@@ -1092,32 +1112,32 @@ main {
   .caption h2 {
     font-size: 2rem;
   }
-  
+
   .caption h5 {
     font-size: 1.1rem;
   }
-  
+
   .btn {
     padding: 0.7rem 1.8rem;
     font-size: 0.9rem;
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
-  
+
   .card-content {
     padding: 1.5rem;
   }
-  
+
   .back-to-top {
     bottom: 20px;
     right: 20px;
     width: 45px;
     height: 45px;
   }
-  
+
   .project-image,
   .blog-image {
     height: 180px;
@@ -1137,45 +1157,52 @@ main {
   }
 }
 
+@media (max-width: 600px) {
+  /* Coursework back to one column on small screens */
+  .coursework ul.two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 576px) {
   .section-title {
     font-size: 1.6rem;
     padding: 8px 20px;
   }
-  
+
   .caption h2 {
     font-size: 1.8rem;
   }
-  
+
   .caption h5 {
     font-size: 1rem;
   }
-  
+
   .caption p {
     font-size: 0.95rem;
   }
-  
+
   .buttons {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
   }
-  
+
   .btn {
     width: 100%;
     text-align: center;
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-  
+
   .skill-icon {
     width: 60px;
     height: 60px;
   }
-  
+
   .project-image,
   .blog-image {
     height: 160px;
