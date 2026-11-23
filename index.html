@@ -70,7 +70,7 @@
     list-style: none;
   }
 
-   {
+  img {
     max-width: 100%;
     height: auto;
   }
@@ -752,7 +752,7 @@
     overflow: hidden;
   }
 
-  .award-image  {
+  .award-image img {
     display: block;
     width: 100%;
     height: 100%;
@@ -760,7 +760,7 @@
     transition: var(--transition);
   }
 
-  .award-card:hover .award-image  {
+  .award-card:hover .award-image img {
     transform: scale(1.03);
   }
 
@@ -839,7 +839,7 @@
 
   /* Project image: icon sits behind the photo.
      If the photo loads it covers the icon; if the file is missing,
-     onerror removes the <> and only the icon is shown. */
+     onerror removes the image element and only the icon is shown. */
   .project-image {
     position: relative;
     height: 200px;
@@ -856,7 +856,7 @@
     transition: var(--transition);
   }
 
-  .project-image  {
+  .project-image img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -865,7 +865,7 @@
     transition: var(--transition);
   }
 
-  .project-card:hover .project-image  { transform: scale(1.05); }
+  .project-card:hover .project-image img { transform: scale(1.05); }
   .project-card:hover .project-image i { transform: scale(1.1); }
 
   .project-content {
