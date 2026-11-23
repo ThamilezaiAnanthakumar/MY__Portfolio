@@ -22,6 +22,7 @@
   /* Section background colors */
   --about-bg: linear-gradient(135deg, #1f2937, #111827, #312e81);
   --education-bg: linear-gradient(135deg, #312e81, #111827, #1e3a8a);
+  --experience-bg: linear-gradient(135deg, #1e3a8a, #111827, #1e3a8a);
   --skills-bg: linear-gradient(135deg, #1e3a8a, #111827, #4c1d95);
   --projects-bg: linear-gradient(135deg, #4c1d95, #111827, #5b21b6);
   --blog-bg: linear-gradient(135deg, #5b21b6, #111827, #6b21a8);
@@ -141,6 +142,7 @@ img {
 /* Section backgrounds */
 .section-about,
 .section-education,
+.section-experience,
 .section-skills,
 .section-projects,
 .section-blog,
@@ -155,6 +157,10 @@ img {
 
 .section-education {
   background: var(--education-bg);
+}
+
+.section-experience {
+  background: var(--experience-bg);
 }
 
 .section-skills {
@@ -663,6 +669,72 @@ main {
   text-decoration: underline;
 }
 
+/* Experience Section */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.exp-date {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.card-content .exp-sub {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.card-content .exp-role {
+  color: var(--list-heading-color);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.exp-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--primary-light);
+  border-radius: 999px;
+  color: var(--primary-light);
+  vertical-align: middle;
+}
+
+.exp-details {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.exp-details li {
+  color: var(--list-item-color);
+  margin-bottom: 0.5rem;
+}
+
+.exp-details li b {
+  color: var(--list-heading-color);
+}
+
+.exp-link {
+  color: var(--primary-light);
+  font-weight: 500;
+}
+
+.exp-link:hover {
+  text-decoration: underline;
+}
+
 /* Skills Section */
 .skill-category {
   color: var(--list-heading-color);
@@ -713,6 +785,13 @@ main {
   font-weight: 500;
   font-size: 0.9rem;
   color: var(--list-item-color);
+}
+
+.card-content .tools-note {
+  margin-top: 3rem;
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--text-muted);
 }
 
 /* Project Section */
