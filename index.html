@@ -8,6 +8,12 @@
   <title>Thamilezai Ananthakumar | Biomedical Engineering Undergraduate @UOM</title>
 
   <style>
+  /* ─── FIX 1: Both html AND body need overflow-x:hidden so the
+     100 vw section-title strips don't create a horizontal scrollbar ─── */
+  html {
+    overflow-x: hidden;
+  }
+
   /* Base Styles */
   :root {
     --primary-color: #8b5cf6;
@@ -38,6 +44,7 @@
 
     --title-bg: #e5d8fe;
     --title-text: #4c1d95;
+    --mobile-nav-height: 70px;
   }
 
   * {
@@ -192,7 +199,7 @@
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(10px);
     border-right: 1px solid var(--border-color);
-    z-index: 1000;
+    z-index: 1001; /* FIX: higher than overlay (1000) */
     transition: var(--transition);
     overflow-y: auto;
   }
@@ -261,6 +268,19 @@
     background-color: var(--primary-color);
   }
 
+  /* ─── FIX 3: Sidebar overlay – click outside to close on mobile ─── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    cursor: pointer;
+  }
+  .sidebar-overlay.active {
+    display: block;
+  }
+
   /* Mobile Navigation */
   .mobile-nav {
     display: none;
@@ -275,6 +295,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
+    height: var(--mobile-nav-height);
   }
 
   .name-title {
@@ -837,9 +858,6 @@
     box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
   }
 
-  /* Project image: icon sits behind the photo.
-     If the photo loads it covers the icon; if the file is missing,
-     onerror removes the image element and only the icon is shown. */
   .project-image {
     position: relative;
     height: 200px;
@@ -1160,7 +1178,8 @@
 
     main {
       margin-left: 0;
-      padding-top: 70px;
+      /* FIX 2: account for the fixed 70px mobile nav */
+      padding-top: var(--mobile-nav-height);
     }
 
     .mobile-nav {
@@ -1344,9 +1363,9 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="dark-theme">
+<body>
   <!-- Navigation Menu -->
-  <nav class="sidebar">
+  <nav class="sidebar" id="sidebar">
     <ul class="side-nav">
       <li class="logo">
         <a id="logo-container" href="#intro" class="brand-logo">
@@ -1366,13 +1385,16 @@
     </ul>
   </nav>
 
+  <!-- FIX 3: Overlay – clicking it closes the mobile sidebar -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <!-- Mobile Navigation -->
   <div class="mobile-nav">
     <div class="name-title">
       <a href="#intro" class="mobile-logo">Thamilezai Ananthakumar</a>
       <span>Biomedical Engineering Undergraduate @UOM</span>
     </div>
-    <button class="menu-toggle" aria-label="Open menu">
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
       <i class="fas fa-bars"></i>
     </button>
   </div>
@@ -1486,7 +1508,6 @@
               </p>
               <div class="coursework">
                 <p><b>Relevant Coursework:</b></p>
-
                 <p><b>Mathematics and Data Structures</b></p>
                 <ul class="two-col">
                   <li>Calculus</li>
@@ -1497,7 +1518,6 @@
                   <li>Data Structures and Algorithms</li>
                   <li>Pattern Recognition</li>
                 </ul>
-
                 <p><b>Electronics and Signals</b></p>
                 <ul class="two-col">
                   <li>Analog Circuit Design</li>
@@ -1510,7 +1530,6 @@
                   <li>Biosignal Processing</li>
                   <li>Image Processing and Machine Vision</li>
                 </ul>
-
                 <p><b>Biomedical and General Engineering</b></p>
                 <ul class="two-col">
                   <li>Anatomy and Physiology for Engineers</li>
@@ -1533,7 +1552,6 @@
       </div>
       <div class="container">
         <div class="experience-list">
-
           <div class="card" data-aos="fade-up" data-aos-duration="1000">
             <div class="card-content">
               <div class="exp-header">
@@ -1580,7 +1598,6 @@
               </ul>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -1593,7 +1610,6 @@
       <div class="container">
         <div class="card" data-aos="fade-up" data-aos-duration="1000">
           <div class="card-content">
-
             <h4 class="pub-group">Journal Articles</h4>
             <ul class="pub-list">
               <li class="pub-item">
@@ -1644,7 +1660,6 @@
             <p class="pub-more">
               <a href="https://scholar.google.com/citations?user=JRXAcdAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="exp-link"><i class="fab fa-google-scholar"></i> View all on Google Scholar</a>
             </p>
-
           </div>
         </div>
       </div>
@@ -1657,7 +1672,6 @@
       </div>
       <div class="container">
         <div class="awards-grid">
-
           <div class="card award-card featured" data-aos="fade-up" data-aos-duration="1000">
             <div class="award-image">
               <img src="./assets/img/Vinoj.jpeg" alt="Receiving the Vinoj Jayasundara Memorial Prize at the University of Moratuwa, 2026" />
@@ -1698,7 +1712,6 @@
               <p class="award-meta">Faculty of Engineering, University of Moratuwa</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -1712,7 +1725,6 @@
         <p class="scroll-hint"><i class="fas fa-arrows-left-right"></i>Scroll sideways to see all projects</p>
         <div class="projects-grid" id="projects-grid">
 
-          <!-- 1. mmWave Radar -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000">
             <div class="project-image">
               <i class="fas fa-satellite-dish" aria-hidden="true"></i>
@@ -1735,7 +1747,6 @@
             </div>
           </div>
 
-          <!-- 2. Electronic Stethoscope -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
             <div class="project-image">
               <i class="fas fa-stethoscope" aria-hidden="true"></i>
@@ -1758,7 +1769,6 @@
             </div>
           </div>
 
-          <!-- 3. MI Prediction -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <div class="project-image">
               <i class="fas fa-heart-pulse" aria-hidden="true"></i>
@@ -1781,7 +1791,6 @@
             </div>
           </div>
 
-          <!-- 4. Portable ECG -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
             <div class="project-image">
               <i class="fas fa-heart" aria-hidden="true"></i>
@@ -1804,7 +1813,6 @@
             </div>
           </div>
 
-          <!-- 5. Asset Tracker -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <div class="project-image">
               <i class="fas fa-id-card" aria-hidden="true"></i>
@@ -1827,7 +1835,6 @@
             </div>
           </div>
 
-          <!-- 6. Stress Monitor -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
             <div class="project-image">
               <i class="fas fa-heart-pulse" aria-hidden="true"></i>
@@ -1850,7 +1857,6 @@
             </div>
           </div>
 
-          <!-- 7. Eye State EEG -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-eye" aria-hidden="true"></i>
@@ -1873,7 +1879,6 @@
             </div>
           </div>
 
-          <!-- 8. Vein Detection -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-syringe" aria-hidden="true"></i>
@@ -1896,7 +1901,6 @@
             </div>
           </div>
 
-          <!-- 9. EMG Analog Front-End -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-bolt" aria-hidden="true"></i>
@@ -1920,7 +1924,6 @@
             </div>
           </div>
 
-          <!-- 10. Physiological Modelling -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-wave-square" aria-hidden="true"></i>
@@ -1945,7 +1948,6 @@
             </div>
           </div>
 
-          <!-- 11. Muscle Cramp -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-dumbbell" aria-hidden="true"></i>
@@ -1967,7 +1969,6 @@
             </div>
           </div>
 
-          <!-- 12. Skin Disease TinyML -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-microscope" aria-hidden="true"></i>
@@ -1991,7 +1992,6 @@
             </div>
           </div>
 
-          <!-- 13. MediBox -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-pills" aria-hidden="true"></i>
@@ -2013,7 +2013,6 @@
             </div>
           </div>
 
-          <!-- 14. Capacitive Torque Sensor -->
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="project-image">
               <i class="fas fa-gears" aria-hidden="true"></i>
@@ -2037,7 +2036,7 @@
             </div>
           </div>
 
-        </div>
+        </div><!-- /projects-grid -->
       </div>
     </section>
 
@@ -2048,7 +2047,6 @@
       </div>
       <div class="container">
         <div class="cert-grid">
-
           <div class="card cert-card" data-aos="fade-up" data-aos-duration="800">
             <div class="card-content">
               <div class="award-icon"><i class="fas fa-certificate"></i></div>
@@ -2093,7 +2091,6 @@
               <a href="https://my-certificates.com/certificates/689c19aadafc272485226d1d" target="_blank" rel="noopener noreferrer" class="cert-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -2215,76 +2212,70 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <script>
-    // Contact form: opens the visitor's email app with the message filled in
     function sendEmail(event) {
       event.preventDefault();
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const email = document.getElementById('email').value;
+      const name    = document.getElementById('name').value;
+      const phone   = document.getElementById('phone').value;
+      const email   = document.getElementById('email').value;
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
-      const body = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`;
-      window.location.href = `mailto:thamilezaiananthakumar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const body    = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`;
+      window.location.href =
+        `mailto:thamilezaiananthakumar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
-    // Initialize AOS
-    AOS.init({
-      once: false,
-      mirror: true,
-      offset: 120,
-      easing: 'ease-out-cubic'
-    });
+    AOS.init({ once: false, mirror: true, offset: 120, easing: 'ease-out-cubic' });
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Typed.js
+
       new Typed('.typing', {
-        strings: ["Researcher", "Quick Learner", "Tech Lover", "Explorer", "Independent Researcher"],
+        strings: ['Researcher', 'Quick Learner', 'Tech Lover', 'Explorer', 'Independent Researcher'],
         loop: true,
         typeSpeed: 80,
         backSpeed: 40
       });
 
-      // Mobile menu toggle
-      const menuToggle = document.querySelector('.menu-toggle');
-      const sidebar = document.querySelector('.sidebar');
+      const sidebar  = document.getElementById('sidebar');
+      const overlay  = document.getElementById('sidebarOverlay');
+      const toggle   = document.getElementById('menuToggle');
 
-      if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', function () {
-          sidebar.classList.toggle('active');
+      function openSidebar()  { sidebar.classList.add('active');    overlay.classList.add('active');    }
+      function closeSidebar() { sidebar.classList.remove('active'); overlay.classList.remove('active'); }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
         });
       }
 
-      // Smooth scrolling for in-page links
+      overlay.addEventListener('click', closeSidebar);
+
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const targetId = this.getAttribute('href');
           if (targetId === '#') return;
           const target = document.querySelector(targetId);
           if (!target) return;
-
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-
-          if (sidebar && sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-          }
+          const isMobile = window.innerWidth <= 992;
+          const offset   = isMobile ? 75 : 0;
+          const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          closeSidebar();
         });
       });
 
-      // Highlight active section in navbar + show/hide back-to-top
-      const sections = document.querySelectorAll('section');
-      const navItems = document.querySelectorAll('.nav-item');
-      const backToTopButton = document.getElementById('backToTop');
+      const sections      = document.querySelectorAll('section');
+      const navItems      = document.querySelectorAll('.nav-item');
+      const backToTopBtn  = document.getElementById('backToTop');
 
       window.addEventListener('scroll', () => {
         let current = '';
-
         sections.forEach(section => {
-          if (window.scrollY >= section.offsetTop - 200) {
+          if (window.scrollY >= section.offsetTop - 250) {
             current = section.getAttribute('id');
           }
         });
-
         navItems.forEach(li => {
           li.classList.remove('active');
           const link = li.querySelector('a');
@@ -2292,16 +2283,10 @@
             li.classList.add('active');
           }
         });
-
-        if (window.scrollY > 300) {
-          backToTopButton.classList.add('show');
-        } else {
-          backToTopButton.classList.remove('show');
-        }
+        backToTopBtn.classList.toggle('show', window.scrollY > 300);
       });
 
-      // Back to top
-      backToTopButton.addEventListener('click', function () {
+      backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
