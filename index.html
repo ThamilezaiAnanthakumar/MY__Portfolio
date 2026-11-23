@@ -7,8 +7,1256 @@
   <meta name="description" content="Portfolio of Thamilezai Ananthakumar, Biomedical Engineering undergraduate at the University of Moratuwa, interested in biosignal processing, physiological modelling and biomedical instrumentation." />
   <title>Thamilezai Ananthakumar | Biomedical Engineering Undergraduate @UOM</title>
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <style>
+  /* Base Styles */
+  :root {
+    --primary-color: #8b5cf6;
+    --primary-light: #a78bfa;
+    --primary-dark: #6d28d9;
+    --secondary-color: #4f46e5;
+    --text-color: #f8f9fa;
+    --text-muted: #d1d5db;
+    --bg-color: #111827;
+    --bg-darker: #0f172a;
+    --bg-lighter: #1f2937;
+    --card-bg: rgba(31, 41, 55, 0.5);
+    --border-color: rgba(139, 92, 246, 0.2);
+    --shadow-color: rgba(139, 92, 246, 0.1);
+    --transition: all 0.3s ease;
+    --list-heading-color: #2dd4bf;
+    --list-item-color: #f0abfc;
+
+    --about-bg: linear-gradient(135deg, #1f2937, #111827, #312e81);
+    --education-bg: linear-gradient(135deg, #312e81, #111827, #1e3a8a);
+    --experience-bg: linear-gradient(135deg, #1e3a8a, #111827, #312e81);
+    --publications-bg: linear-gradient(135deg, #312e81, #111827, #1e3a8a);
+    --honours-bg: linear-gradient(135deg, #1e3a8a, #111827, #312e81);
+    --skills-bg: linear-gradient(135deg, #312e81, #111827, #4c1d95);
+    --projects-bg: linear-gradient(135deg, #4c1d95, #111827, #5b21b6);
+    --contact-bg: linear-gradient(135deg, #5b21b6, #111827, #1f2937);
+
+    --title-bg: #e5d8fe;
+    --title-text: #4c1d95;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-darker), var(--bg-color));
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--transition);
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Layout */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .section-about { background: var(--about-bg); }
+  .section-education { background: var(--education-bg); }
+  .section-experience { background: var(--experience-bg); }
+  .section-publications { background: var(--publications-bg); }
+  .section-honours { background: var(--honours-bg); }
+  .section-skills { background: var(--skills-bg); }
+  .section-projects { background: var(--projects-bg); }
+  .section-contact { background: var(--contact-bg); }
+
+  .section-about,
+  .section-education,
+  .section-experience,
+  .section-publications,
+  .section-honours,
+  .section-skills,
+  .section-projects,
+  .section-contact {
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+  }
+
+  .section-title-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-color: var(--title-bg);
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 10px 40px;
+    color: var(--title-text);
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #e5d8fe, #d8b4fe);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .full-height {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Back to Top */
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: var(--transition);
+    border: none;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 99;
+  }
+
+  .back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover {
+    background: var(--primary-dark);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    width: 220px;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: var(--transition);
+    overflow: hidden;
+  }
+
+  .side-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .logo {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    transition: var(--transition);
+  }
+
+  .profile-pic:hover {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
+  }
+
+  .nav-item {
+    padding: 0.3rem 1.2rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .nav-link i {
+    margin-right: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .nav-link:hover {
+    background-color: rgba(139, 92, 246, 0.2);
+    color: var(--primary-light);
+  }
+
+  .nav-item.active .nav-link {
+    background-color: var(--primary-color);
+  }
+
+  /* Mobile Navigation */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .name-title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-light);
+  }
+
+  .name-title span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .menu-toggle:hover {
+    color: var(--primary-light);
+  }
+
+  main {
+    margin-left: 220px;
+    transition: var(--transition);
+  }
+
+  /* Hero */
+  #intro {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .caption {
+    margin-bottom: 2rem;
+  }
+
+  .caption h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--text-color), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .highlight {
+    color: var(--primary-light);
+    position: relative;
+    display: inline-block;
+  }
+
+  .highlight::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(139, 92, 246, 0.2);
+    bottom: 4px;
+    left: 0;
+    border-radius: 4px;
+  }
+
+  .caption h5 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .typing {
+    color: var(--primary-light);
+    margin-left: 0.5rem;
+  }
+
+  .caption p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  /* Social Buttons */
+  .social {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .icon-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .icon-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .linkedin:hover { background: #0077b5; color: white; }
+  .github:hover { background: #333; color: white; }
+  .google-scholar:hover { background: #4285f4; color: white; }
+
+  /* Buttons */
+  .buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn.primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: white;
+  }
+
+  .btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn.outline {
+    border: 2px solid var(--primary-color);
+    color: white;
+    background: transparent;
+  }
+
+  .btn.outline:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn.download-cv {
+    background: var(--secondary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn.download-cv:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+  }
+
+  /* About */
+  .content-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+  }
+
+  .content-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+  }
+
+  .content-box p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .skills-list ul {
+    padding-left: 1.5rem;
+  }
+
+  .skills-list ul li {
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
+    font-size: 1rem;
+    color: var(--list-item-color);
+  }
+
+  .skills-list ul li b {
+    color: var(--list-heading-color);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+  }
+
+  .card-content {
+    padding: 2rem;
+  }
+
+  .card-content p {
+    margin-bottom: 1rem;
+  }
+
+  .card-content p b {
+    color: var(--list-heading-color);
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+  }
+
+  .highlight-link {
+    color: var(--primary-light);
+    font-weight: 600;
+    transition: var(--transition);
+  }
+
+  .highlight-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Education */
+  .education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .location {
+    color: var(--primary-light);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .coursework {
+    margin-top: 1.5rem;
+  }
+
+  .coursework ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .coursework ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .card-content .coursework ul li {
+    color: var(--list-item-color);
+  }
+
+  .coursework ul.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.5rem;
+    row-gap: 0.3rem;
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .coursework ul.two-col li {
+    overflow-wrap: break-word;
+    line-height: 1.4;
+  }
+
+  /* Experience */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .exp-date {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .card-content .exp-sub {
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+
+  .card-content .exp-role {
+    color: var(--list-heading-color);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .exp-badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.75rem;
+    border: 1px solid var(--primary-light);
+    border-radius: 999px;
+    color: var(--primary-light);
+    vertical-align: middle;
+  }
+
+  .exp-details {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .exp-details li {
+    color: var(--list-item-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-details li b {
+    color: var(--list-heading-color);
+  }
+
+  .exp-link {
+    color: var(--primary-light);
+    font-weight: 500;
+  }
+
+  .exp-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Publications */
+  .pub-group {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--list-heading-color);
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .pub-group:first-child {
+    margin-top: 0;
+  }
+
+  .pub-item {
+    padding-left: 1rem;
+    border-left: 3px solid var(--primary-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .card-content .pub-title {
+    color: var(--text-color);
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-content .pub-authors {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .pub-authors strong {
+    color: var(--list-item-color);
+  }
+
+  .card-content .pub-venue {
+    color: var(--primary-light);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  .pub-badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.75rem;
+    font-style: normal;
+    border: 1px solid var(--primary-light);
+    border-radius: 999px;
+    color: var(--primary-light);
+    vertical-align: middle;
+  }
+
+  .pub-badge.spotlight {
+    border-color: var(--list-heading-color);
+    color: var(--list-heading-color);
+  }
+
+  .card-content .pub-more {
+    text-align: center;
+    margin: 1rem 0 0;
+  }
+
+  /* Achievements */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .award-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .award-card.featured .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .award-image {
+    min-height: 260px;
+    overflow: hidden;
+  }
+
+  .award-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+  }
+
+  .award-card:hover .award-image img {
+    transform: scale(1.03);
+  }
+
+  .award-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--primary-light);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .award-card .card-title {
+    font-size: 1.3rem;
+    color: var(--primary-light);
+  }
+
+  .card-content .award-rank {
+    color: var(--list-heading-color);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-content .award-meta {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .skill-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .skill-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 0.8rem;
+    border-radius: 12px;
+    padding: 0.7rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+  }
+
+  .skill-item:hover .skill-icon {
+    transform: scale(1.1);
+    box-shadow: 0 12px 25px rgba(139, 92, 246, 0.25);
+  }
+
+  .skill-item span {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--list-item-color);
+  }
+
+  .card-content .tools-note {
+    margin-top: 3rem;
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  /* Projects */
+  .projects-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projects-grid::-webkit-scrollbar { height: 8px; }
+  .projects-grid::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
+  .projects-grid::-webkit-scrollbar-track { background: var(--bg-darker); }
+
+  .project-card {
+    flex: 0 0 calc(50% - 1rem);
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    scroll-snap-align: start;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+  }
+
+  .project-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .project-content {
+    padding: 1.5rem;
+  }
+
+  .project-content h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    color: var(--primary-light);
+    font-weight: 700;
+  }
+
+  .project-content p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .project-details h5 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--list-heading-color);
+    font-weight: 600;
+  }
+
+  .project-details ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1.2rem;
+    color: var(--list-item-color);
+  }
+
+  .project-details li {
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    color: var(--text-color);
+  }
+
+  .btn-icon:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+  }
+
+  /* Contact */
+  .section-contact .container {
+    display: flex;
+    gap: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+  }
+
+  .contact-info {
+    flex: 1;
+    color: var(--text-muted);
+  }
+
+  .contact-info p {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    color: var(--primary-color);
+  }
+
+  .contact-icon i {
+    font-size: 1.4rem;
+  }
+
+  .contact-icon:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .contact-text h4 {
+    font-size: 1.1rem;
+    color: var(--primary-light);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-text p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .contact-form {
+    flex: 1;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+  }
+
+  .form-group textarea {
+    height: 120px;
+    resize: vertical;
+  }
+
+  .btn-send {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-send:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .sidebar {
+      transform: translateX(-100%);
+      z-index: 1001;
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    main {
+      margin-left: 0;
+      padding-top: 70px;
+    }
+
+    .mobile-nav {
+      display: flex;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      padding: 8px 25px;
+    }
+
+    .caption h2 {
+      font-size: 2.5rem;
+    }
+
+    .caption h5 {
+      font-size: 1.2rem;
+    }
+
+    .education-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card {
+      flex: 0 0 calc(80% - 1rem);
+    }
+
+    .section-contact .container {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 50px 0;
+    }
+
+    .container {
+      width: 95%;
+    }
+
+    .caption h2 {
+      font-size: 2rem;
+    }
+
+    .caption h5 {
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .award-card.featured {
+      grid-template-columns: 1fr;
+    }
+
+    .award-image {
+      min-height: 200px;
+    }
+
+    .back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+    }
+
+    .project-image {
+      height: 180px;
+    }
+
+    .contact-item {
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 45px;
+      height: 45px;
+    }
+
+    .contact-icon i {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .coursework ul.two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .section-title {
+      font-size: 1.6rem;
+      padding: 8px 20px;
+    }
+
+    .caption h2 {
+      font-size: 1.8rem;
+    }
+
+    .caption h5 {
+      font-size: 1rem;
+    }
+
+    .caption p {
+      font-size: 0.95rem;
+    }
+
+    .buttons {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .project-image {
+      height: 160px;
+    }
+
+    .project-card {
+      flex: 0 0 calc(90% - 1rem);
+    }
+
+    .project-content {
+      padding: 1rem;
+    }
+
+    .project-content h4 {
+      font-size: 1.2rem;
+    }
+
+    .contact-item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content-box {
+      padding: 1.5rem;
+    }
+  }
+  </style>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,36 +1274,18 @@
     <ul class="side-nav">
       <li class="logo">
         <a id="logo-container" href="#intro" class="brand-logo">
-          <img src="./assets/img/thamil.jpg" class="profile-pic" alt="Thamilezai Ananthakumar" style="width: 250px; max-width: 100%; height: auto;">
+          <img src="./assets/img/thamil.jpg" class="profile-pic" alt="Thamilezai Ananthakumar">
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i><span>Experience</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#publications" class="nav-link"><i class="fas fa-book-open"></i><span>Publications</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#achievements" class="nav-link"><i class="fas fa-trophy"></i><span>Achievements</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#skills" class="nav-link"><i class="fas fa-code"></i><span>Tools and Technologies</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#projects" class="nav-link"><i class="fas fa-folder-open"></i><span>Projects</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="https://drive.google.com/file/d/1jVX_LSvqO0tTi27G19tlsSyvQWU9T4QX/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="nav-link"><i class="fas fa-file-alt"></i><span>Resume</span></a>
-      </li>
+      <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a></li>
+      <li class="nav-item"><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Education</span></a></li>
+      <li class="nav-item"><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i><span>Experience</span></a></li>
+      <li class="nav-item"><a href="#publications" class="nav-link"><i class="fas fa-book-open"></i><span>Publications</span></a></li>
+      <li class="nav-item"><a href="#achievements" class="nav-link"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+      <li class="nav-item"><a href="#skills" class="nav-link"><i class="fas fa-code"></i><span>Tools and Technologies</span></a></li>
+      <li class="nav-item"><a href="#projects" class="nav-link"><i class="fas fa-folder-open"></i><span>Projects</span></a></li>
+      <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+      <li class="nav-item"><a href="https://drive.google.com/file/d/1jVX_LSvqO0tTi27G19tlsSyvQWU9T4QX/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="nav-link"><i class="fas fa-file-alt"></i><span>Resume</span></a></li>
     </ul>
   </nav>
 
@@ -83,22 +1313,14 @@
             <p>A curious and motivated Biomedical Engineering undergraduate with a love for mathematics, problem-solving, and understanding the human body. Passionate about combining mathematics, physics, and electronics to explore physiological signals, medical instrumentation, and develop innovative healthcare solutions.</p>
           </div>
           <div class="social" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <a href="https://www.linkedin.com/in/thamilezai-ananthakumar-387a922a4" target="_blank" rel="noopener noreferrer" class="icon-btn linkedin" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/ThamilezaiAnanthakumar" target="_blank" rel="noopener noreferrer" class="icon-btn github" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://scholar.google.com/citations?user=JRXAcdAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="icon-btn google-scholar" aria-label="Google Scholar">
-              <i class="fab fa-google-scholar"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/thamilezai-ananthakumar-387a922a4" target="_blank" rel="noopener noreferrer" class="icon-btn linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/ThamilezaiAnanthakumar" target="_blank" rel="noopener noreferrer" class="icon-btn github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://scholar.google.com/citations?user=JRXAcdAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="icon-btn google-scholar" aria-label="Google Scholar"><i class="fab fa-google-scholar"></i></a>
           </div>
           <div class="buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <a href="#about" class="btn primary">Read More</a>
             <a href="#contact" class="btn outline">Contact Me</a>
-            <a href="https://drive.google.com/file/d/1jVX_LSvqO0tTi27G19tlsSyvQWU9T4QX/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn download-cv">
-              <i class="fas fa-download"></i> Download CV
-            </a>
+            <a href="https://drive.google.com/file/d/1jVX_LSvqO0tTi27G19tlsSyvQWU9T4QX/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn download-cv"><i class="fas fa-download"></i> Download CV</a>
           </div>
         </div>
       </div>
@@ -158,17 +1380,11 @@
               </h4>
               <p class="location">Jaffna, Sri Lanka</p>
               <p>
-                <b>Qualification: </b>G.C.E. Ordinary Level
-                <br>
-                <b>Results: </b>9 A Grades (English Medium)
-                <br>
-                <b>Year: </b>2018
-                <br>
-                <br>
-                <b>Qualification: </b>G.C.E. Advanced Level
-                <br>
-                <b>Results: </b>3 A Grades (Mathematics, Physics, Chemistry - English Medium)
-                <br>
+                <b>Qualification: </b>G.C.E. Ordinary Level<br>
+                <b>Results: </b>9 A Grades (English Medium)<br>
+                <b>Year: </b>2018<br><br>
+                <b>Qualification: </b>G.C.E. Advanced Level<br>
+                <b>Results: </b>3 A Grades (Mathematics, Physics, Chemistry - English Medium)<br>
                 <b>Year: </b>2021
               </p>
               <div class="coursework">
@@ -187,10 +1403,8 @@
               </h4>
               <p class="location">Moratuwa, Sri Lanka</p>
               <p>
-                <b>Degree: </b>Bachelor of Biomedical Engineering
-                <br>
-                <b>CGPA: </b>3.85/4.0
-                <br>
+                <b>Degree: </b>Bachelor of Biomedical Engineering<br>
+                <b>CGPA: </b>3.85/4.0<br>
                 <b>Dean's List: </b>Semesters 1, 2, 3, 5 and 6
               </p>
               <div class="coursework">
@@ -415,70 +1629,22 @@
         <div class="card" data-aos="fade-up" data-aos-duration="800">
           <div class="card-content">
             <div class="skills-grid">
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
-                <img src="./assets/img/matlab_2.jpg" alt="MATLAB" class="skill-icon" />
-                <span>MATLAB</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
-                <img src="./assets/img/python-logo-1-300x300.jpg" alt="Python" class="skill-icon" />
-                <span>Python</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
-                <img src="./assets/img/pytorch-logo.png" alt="PyTorch" class="skill-icon" />
-                <span>PyTorch</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
-                <img src="./assets/img/tensorflow-logo-1.png" alt="TensorFlow" class="skill-icon" />
-                <span>TensorFlow</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
-                <img src="./assets/img/altium.jpg" alt="Altium Designer" class="skill-icon" />
-                <span>Altium</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="600">
-                <img src="./assets/img/solidwork.png" alt="SolidWorks" class="skill-icon" />
-                <span>SolidWorks</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="700">
-                <img src="./assets/img/ltspice.jpg" alt="LTspice" class="skill-icon" />
-                <span>LTspice</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="800">
-                <img src="./assets/img/nodered.png" alt="Node-RED" class="skill-icon" />
-                <span>Node-RED</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="900">
-                <img src="./assets/img/thingspeak.png" alt="ThingSpeak" class="skill-icon" />
-                <span>ThingSpeak</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1000">
-                <img src="./assets/img/raspi.png" alt="Raspberry Pi" class="skill-icon" />
-                <span>Raspberry Pi</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1100">
-                <img src="./assets/img/ardino.jpg" alt="Arduino" class="skill-icon" />
-                <span>Arduino</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1200">
-                <img src="./assets/img/atmel.png" alt="Atmel Studio" class="skill-icon" />
-                <span>Atmel Studio</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1300">
-                <img src="./assets/img/Cube.png" alt="STM32CubeIDE" class="skill-icon" />
-                <span>STM32CubeIDE</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1400">
-                <img src="./assets/img/VS.png" alt="Visual Studio Code" class="skill-icon" />
-                <span>VS Code</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1500">
-                <img src="./assets/img/colab.png" alt="Google Colab" class="skill-icon" />
-                <span>Google Colab</span>
-              </div>
-              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1600">
-                <img src="./assets/img/oveleaf.png" alt="Overleaf" class="skill-icon" />
-                <span>Overleaf</span>
-              </div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="100"><img src="./assets/img/matlab_2.jpg" alt="MATLAB" class="skill-icon" /><span>MATLAB</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="200"><img src="./assets/img/python-logo-1-300x300.jpg" alt="Python" class="skill-icon" /><span>Python</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="300"><img src="./assets/img/pytorch-logo.png" alt="PyTorch" class="skill-icon" /><span>PyTorch</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="400"><img src="./assets/img/tensorflow-logo-1.png" alt="TensorFlow" class="skill-icon" /><span>TensorFlow</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="500"><img src="./assets/img/altium.jpg" alt="Altium Designer" class="skill-icon" /><span>Altium</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="600"><img src="./assets/img/solidwork.png" alt="SolidWorks" class="skill-icon" /><span>SolidWorks</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="700"><img src="./assets/img/ltspice.jpg" alt="LTspice" class="skill-icon" /><span>LTspice</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="800"><img src="./assets/img/nodered.png" alt="Node-RED" class="skill-icon" /><span>Node-RED</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="900"><img src="./assets/img/thingspeak.png" alt="ThingSpeak" class="skill-icon" /><span>ThingSpeak</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1000"><img src="./assets/img/raspi.png" alt="Raspberry Pi" class="skill-icon" /><span>Raspberry Pi</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1100"><img src="./assets/img/ardino.jpg" alt="Arduino" class="skill-icon" /><span>Arduino</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1200"><img src="./assets/img/atmel.png" alt="Atmel Studio" class="skill-icon" /><span>Atmel Studio</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1300"><img src="./assets/img/Cube.png" alt="STM32CubeIDE" class="skill-icon" /><span>STM32CubeIDE</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1400"><img src="./assets/img/VS.png" alt="Visual Studio Code" class="skill-icon" /><span>VS Code</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1500"><img src="./assets/img/colab.png" alt="Google Colab" class="skill-icon" /><span>Google Colab</span></div>
+              <div class="skill-item" data-aos="zoom-in" data-aos-delay="1600"><img src="./assets/img/oveleaf.png" alt="Overleaf" class="skill-icon" /><span>Overleaf</span></div>
             </div>
             <p class="tools-note">I also have experience working with high-performance computing clusters (Origami cluster).</p>
           </div>
@@ -495,9 +1661,7 @@
         <div class="projects-grid" id="projects-grid">
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000">
-            <div class="project-image">
-              <img src="./assets/img/cardio.jpg" alt="Real-time ECG and PPG cardiac monitor" />
-            </div>
+            <div class="project-image"><img src="./assets/img/cardio.jpg" alt="Real-time ECG and PPG cardiac monitor" /></div>
             <div class="project-content">
               <h4>Portable Cardiac Analysis System for Coronary Care Units</h4>
               <p>Real-Time ECG and PPG Monitor</p>
@@ -513,18 +1677,14 @@
                   <li>Supported early detection of cardiac anomalies such as arrhythmia using HRV analysis.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://github.com/ThamilezaiAnanthakumar/Cardiologist-Assistant-Real-Time-ECG-PPG-Monitor" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://github.com/ThamilezaiAnanthakumar/Cardiologist-Assistant-Real-Time-ECG-PPG-Monitor" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <div class="project-image">
-              <img src="./assets/img/emg.jpg" alt="Analog EMG filtering circuit" />
-            </div>
+            <div class="project-image"><img src="./assets/img/emg.jpg" alt="Analog EMG filtering circuit" /></div>
             <div class="project-content">
               <h4>EMG Signal Filtering Circuit</h4>
               <p>Analog Filter for EMG with a Mini Web-Based Oscilloscope</p>
@@ -536,21 +1696,15 @@
                   <li>Used the ThingSpeak IoT platform for time-domain and frequency-domain analysis.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://sukithan.github.io/AnalogProjects/" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View project online">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="https://github.com/mynthan3107/STEM" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://sukithan.github.io/AnalogProjects/" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View project online"><i class="fas fa-external-link-alt"></i></a>
+                  <a href="https://github.com/mynthan3107/STEM" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-            <div class="project-image">
-              <img src="./assets/img/Muscle-Spasm-1200x815.webp" alt="Muscle cramp detection system" />
-            </div>
+            <div class="project-image"><img src="./assets/img/Muscle-Spasm-1200x815.webp" alt="Muscle cramp detection system" /></div>
             <div class="project-content">
               <h4>Muscle Cramp Detector</h4>
               <p>Non-Invasive Muscle Cramp Detection System Using Physiological Sensors</p>
@@ -563,18 +1717,14 @@
                   <li>Processes the data using MATLAB on ThingSpeak and provides real-time alerts.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://github.com/ThamilezaiAnanthakumar/Muscle-Cramp-Detector" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://github.com/ThamilezaiAnanthakumar/Muscle-Cramp-Detector" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image">
-              <img src="./assets/img/medi.png" alt="IoT MediBox embedded system" />
-            </div>
+            <div class="project-image"><img src="./assets/img/medi.png" alt="IoT MediBox embedded system" /></div>
             <div class="project-content">
               <h4>Implementing a Complete Embedded System for a MediBox</h4>
               <p>Designed and implemented an IoT-based MediBox for remote health monitoring using ESP32 and Node-RED.</p>
@@ -586,18 +1736,14 @@
                   <li>Implemented the MQTT protocol for IoT communication.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://github.com/ThamilezaiAnanthakumar/Medi_BoX" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://github.com/ThamilezaiAnanthakumar/Medi_BoX" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image">
-              <img src="./assets/img/v.avif" alt="Infrared vein detection device" />
-            </div>
+            <div class="project-image"><img src="./assets/img/v.avif" alt="Infrared vein detection device" /></div>
             <div class="project-content">
               <h4>Vein Detection Using IR</h4>
               <p>Developed a real-time vein detection system using an ESP32-CAM with IR illumination and wireless video streaming.</p>
@@ -610,18 +1756,14 @@
                   <li>Integrated a circular IR LED array around the camera for illumination.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://github.com/ThamilezaiAnanthakumar/Vein-Detection-Using-IR" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://github.com/ThamilezaiAnanthakumar/Vein-Detection-Using-IR" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <div class="project-image">
-              <img src="./assets/img/skin-diseases-concept-vector-42347361.jpg" alt="Skin disease classification app" />
-            </div>
+            <div class="project-image"><img src="./assets/img/skin-diseases-concept-vector-42347361.jpg" alt="Skin disease classification app" /></div>
             <div class="project-content">
               <h4>Skin Disease Prediction Using Transfer Learning</h4>
               <p>Skin disease detection using MobileNet, optimized for real-time edge deployment on Raspberry Pi.</p>
@@ -635,18 +1777,14 @@
                   <li>Optimized with TensorFlow Lite (2.4 MB model) for efficient performance on edge devices.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://github.com/ThamilezaiAnanthakumar/Skin_Disease_Prediction_web_app" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://github.com/ThamilezaiAnanthakumar/Skin_Disease_Prediction_web_app" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
-            <div class="project-image">
-              <img src="./assets/img/thy.jpg" alt="Thyroid disease prediction model" />
-            </div>
+            <div class="project-image"><img src="./assets/img/thy.jpg" alt="Thyroid disease prediction model" /></div>
             <div class="project-content">
               <h4>Thyroid Prediction Model</h4>
               <p>Thyroid disease prediction using logistic regression with 97% accuracy.</p>
@@ -658,9 +1796,7 @@
                   <li>Used a Kaggle dataset; the workflow covers data preprocessing, model training, and evaluation.</li>
                 </ul>
                 <div class="project-links">
-                  <a href="https://github.com/ThamilezaiAnanthakumar/Thyroid" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
+                  <a href="https://github.com/ThamilezaiAnanthakumar/Thyroid" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
                 </div>
               </div>
             </div>
@@ -680,45 +1816,35 @@
           <p>I'm happy to talk about research, projects, or collaboration in biomedical engineering. Feel free to reach out any time.</p>
           <div class="contact-items">
             <div class="contact-item" data-aos="flip-up" data-aos-duration="800" data-aos-delay="100">
-              <a href="https://www.google.com/maps?q=Alaveddy,+Jaffna,+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="contact-icon" aria-label="Location on map">
-                <i class="fas fa-map-marker-alt"></i>
-              </a>
+              <a href="https://www.google.com/maps?q=Alaveddy,+Jaffna,+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="contact-icon" aria-label="Location on map"><i class="fas fa-map-marker-alt"></i></a>
               <div class="contact-text">
                 <h4>Address</h4>
                 <p>"Nagvasa", Nunachchai, Alaveddy Center, Jaffna, Sri Lanka</p>
               </div>
             </div>
             <div class="contact-item" data-aos="flip-up" data-aos-duration="800" data-aos-delay="200">
-              <a href="tel:+94762934089" class="contact-icon" aria-label="Phone">
-                <i class="fas fa-phone-alt"></i>
-              </a>
+              <a href="tel:+94762934089" class="contact-icon" aria-label="Phone"><i class="fas fa-phone-alt"></i></a>
               <div class="contact-text">
                 <h4>Phone</h4>
                 <p>+94 76 293 4089</p>
               </div>
             </div>
             <div class="contact-item" data-aos="flip-up" data-aos-duration="800" data-aos-delay="300">
-              <a href="mailto:thamilezaiananthakumar@gmail.com" class="contact-icon" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-              </a>
+              <a href="mailto:thamilezaiananthakumar@gmail.com" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
               <div class="contact-text">
                 <h4>Email</h4>
                 <p>thamilezaiananthakumar@gmail.com</p>
               </div>
             </div>
             <div class="contact-item" data-aos="flip-up" data-aos-duration="800" data-aos-delay="400">
-              <a href="https://github.com/ThamilezaiAnanthakumar" target="_blank" rel="noopener noreferrer" class="contact-icon" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
+              <a href="https://github.com/ThamilezaiAnanthakumar" target="_blank" rel="noopener noreferrer" class="contact-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
               <div class="contact-text">
                 <h4>GitHub</h4>
                 <p>github.com/ThamilezaiAnanthakumar</p>
               </div>
             </div>
             <div class="contact-item" data-aos="flip-up" data-aos-duration="800" data-aos-delay="500">
-              <a href="https://www.linkedin.com/in/thamilezai-ananthakumar-387a922a4" target="_blank" rel="noopener noreferrer" class="contact-icon" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
+              <a href="https://www.linkedin.com/in/thamilezai-ananthakumar-387a922a4" target="_blank" rel="noopener noreferrer" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
               <div class="contact-text">
                 <h4>LinkedIn</h4>
                 <p>linkedin.com/in/thamilezai-ananthakumar</p>
@@ -815,7 +1941,6 @@
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
 
-          // Close mobile menu after clicking a link
           if (sidebar && sidebar.classList.contains('active')) {
             sidebar.classList.remove('active');
           }
